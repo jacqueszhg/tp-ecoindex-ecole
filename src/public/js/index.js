@@ -83,19 +83,3 @@ for(let i = 0; i < DOM_LOOP_REQUIRED; i++){
         span.classList.add("augment__span")
     })
 }
-
-/* carousel wds*/
-
-const carouselButtons = document.querySelectorAll("[data-carousel-button]")
-const carouselElements = document.querySelector("[data-carousel-elements]")
-const nbCarouselElement = carouselElements.children.length
-
-carouselButtons.forEach(button => {
-    button.addEventListener("click", () => {
-        const offset = button.dataset.carouselButton === "prev" ? -1: 1
-        const activeSlide = carouselElements.querySelector("[data-active]")
-        const newIndex = ([...carouselElements.children].indexOf(activeSlide) + offset + nbCarouselElement) % nbCarouselElement
-        carouselElements.children[newIndex].dataset.active = true
-        activeSlide.removeAttribute("data-active")
-    })  
-})
