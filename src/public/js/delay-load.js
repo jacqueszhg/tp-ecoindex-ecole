@@ -1,6 +1,1 @@
-var date = new Date();
-var curDate = null;
-const millis = 1000
-do { curDate = new Date(); }
-while(curDate-date < millis);
-console.log("ready to load")
+var date=new Date,curDate=null;const millis=1e3;do curDate=new Date;while(curDate-date<1e3);console.log("ready to load");
