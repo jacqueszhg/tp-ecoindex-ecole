@@ -2,9 +2,12 @@ const express = require('express');
 const res = require('express/lib/response');
 const app = express();
 const port = process.env.PORT || 8080;
-const trads = require("./data-trad.json")
+const trads = require("./data-trad.json");
+const oneDay = 86400000;
 
-app.use(express.static('src/public'));
+app.use(express.static('src/public', {
+    maxAge: oneDay,
+}));
 
 app.get("/api", (req, res) => {
     res.send({msg: "hello world"})
