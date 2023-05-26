@@ -1,4 +1,6 @@
 const express = require('express');
+const https = require('https');
+const fs = require('fs');
 const res = require('express/lib/response');
 const app = express();
 const port = process.env.PORT || 8080;
@@ -23,6 +25,11 @@ app.get("/api/:lang", (req, res) => {
     res.send({...trads.fr, ...trads[lang]})
 })
 
-app.listen(port, () => {
+const options = {
+    key: fs.readFileSync('private.key'),
+    cert: fs.readFileSync('certificate.crt')
+};
+
+https.createServer(options, app).listen(port, () => {
     console.log('Server app listening on port ' + port);
 });

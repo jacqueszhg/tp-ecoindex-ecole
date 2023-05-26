@@ -13,11 +13,11 @@ const langs = [
 let currentLang = "fr"
 
 function tradPage(){
+    traduction = fetch(`/api/${currentLang}`).then(res => {
+        return res.text()
+    })
     tradElements.forEach((el) => {
-        fetch(`/api/${currentLang}/${el.dataset.trad}`)
-            .then(res => {
-                return res.text()
-            })
+        traduction[el]
             .then(trad => {
                 let txt = trad
                 const regex = /\$\{(a|sub|code);([^;}]*)(;([^\}]*))?\}/
